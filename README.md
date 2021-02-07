@@ -110,7 +110,7 @@ NOTE that it is important to add -a option to create an annotated tag (otherwise
 - Select "java-labs-&lt;user-login&gt;" folder as the folder to import.
 - Click on "Ok" button.
 - Choose "Create project from existing sources" and click on "Next" button. 
-- Set "java-labs" as "Project Name". The default values are correct for the remaining fields. NOTE that IntelliJ IDEA project should be created within java-labs (do not change the default value for the project location). This way a .iml file, an out/ folder (with .class files) and a .idea folder (with IntelliJ configuration) will appear within java-labs-&lt;user-login&gt;.
+- Set "java-labs-&lt;user-login&gt;" as "Project Name". The default values are correct for the remaining fields. NOTE that IntelliJ IDEA project should be created within java-labs-&lt;user-login&gt; (do not change the default value for the project location). This way a .iml file, an out/ folder (with .class files) and a .idea folder (with IntelliJ configuration) will appear within java-labs-&lt;user-login&gt;.
 - Mark src folder and click on "Next" button. 
 - Click on "Next" button until "Finish" button will appear, and click on "Finish" button.
 
