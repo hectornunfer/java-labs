@@ -116,7 +116,26 @@ NOTE that it is important to add -a option to create an annotated tag (otherwise
 
 ### Modify .gitignore
 
-- Go to java-labs-&lt;user-login&gt;/ folder.  
-- The .out folder should not be versioned, but .iml file and .idea should. In consequence, it is necessary to check .gitignore files (there are one within java-labs/ and another withing java-labs/.idea) in order to version .iml file and the .idea folder (check that workspace.xml is included).
+- <del> Go to java-labs-&lt;user-login&gt;/ folder. </del>  
+- <del> The .out folder should not be versioned, but .iml file and .idea should. In consequence, it is necessary to check .gitignore files (there are one within java-labs/ and another withing java-labs/.idea) in order to version .iml file and the .idea folder (check that workspace.xml is included). </del>
+- Only one modification should be made to the initial java-labs-&lt;user-login&gt;/.gitignore file: change java-labs.iml to java-labs-&lt;user-login&gt;.iml:
+```shell
+# Target directories.
+target/
 
+# Eclipse configuration.
+.classpath
+.project
+.settings/
 
+# IntelliJ IDEA configuration.
+.idea/
+/out/
+java-labs-<user-login>.iml
+
+# Netbeans configuration.
+/nbproject/private/
+/dist/
+/build/
+```
+- The java-labs-&lt;user-login&gt;/.idea/.gitignore is not going to be versioned any more, so it does not matter if it exists or not in your local repositories.  
