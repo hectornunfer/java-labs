@@ -9,7 +9,7 @@ target/
 # IntelliJ IDEA configuration.
 .idea/
 /out/
-java-labs.iml
+java-labs-hectornunfer.iml
 
 # Netbeans configuration.
 /nbproject/private/
