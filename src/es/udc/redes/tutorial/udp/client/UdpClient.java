@@ -36,7 +36,7 @@ public class UdpClient {
                     + dgramSent.getAddress().toString() + ":"
                     + dgramSent.getPort());
             // Prepare datagram for data reception
-            byte array[] = new byte[1024];
+            byte[] array = new byte[1024];
             DatagramPacket dgramRec = new DatagramPacket(array, array.length);
             // Receive the message
             sDatagram.receive(dgramRec);
