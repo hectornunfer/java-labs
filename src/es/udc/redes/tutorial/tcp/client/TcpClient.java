@@ -25,19 +25,23 @@ public class TcpClient {
             socket = new Socket(serverAddress, serverPort);
             // Set a maximum timeout of 300 secs
             socket.setSoTimeout(300000);
-            System.out.println("CLIENT: Connection established with "
-                    + serverAddress.toString() + " port " + serverPort);
             // Set the input channel
             BufferedReader sInput = new BufferedReader(new InputStreamReader(
                     socket.getInputStream()));
             // Set the output channel
             PrintWriter sOutput = new PrintWriter(socket.getOutputStream(), true);
-            System.out.println("CLIENT: Sending " + message);
+            System.out.println("CLIENT: Sending "
+                    + message + " to "
+                    + serverAddress.toString() + ":"
+                    + serverPort);
             // Send message to the server
             sOutput.println(message);
             // Receive server response
             String received = sInput.readLine();
-            System.out.println("CLIENT: Received " + received);
+            System.out.println("CLIENT: Received "
+                    + message + " from "
+                    + socket.getInetAddress() + ":"
+                    + serverPort);
             // Close streams and release connection
             sOutput.close();
             sInput.close();
@@ -47,7 +51,7 @@ public class TcpClient {
             System.err.println("Error: " + e.getMessage());
         } finally {
             try {
-                socket.close();
+                if(socket!=null) socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
