@@ -1,12 +1,11 @@
 package es.udc.redes.tutorial.tcp.server;
 import java.io.IOException;
 import java.net.*;
-
 /** Multithread TCP echo server. */
 
 public class TcpServer {
 
-  public static void main(String argv[]) {
+  public static void main(String[] argv) {
     if (argv.length != 1) {
       System.err.println("Format: es.udc.redes.tutorial.tcp.server.TcpServer <port>");
       System.exit(-1);
@@ -32,7 +31,8 @@ public class TcpServer {
       e.printStackTrace();
      } finally{
 	//Close the socket
-      try{if(serverSocket!=null) serverSocket.close();
+      try{
+        if(serverSocket!=null) serverSocket.close();
       }
       catch (IOException e) {
         e.printStackTrace();
