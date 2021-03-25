@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.Properties;
 
@@ -29,7 +30,7 @@ public class WebServer {
             sSocket = new ServerSocket(port);
             sSocket.setSoTimeout(300000);
             while (true) {
-                Socket accept = sSocket.accept();
+                Socket accept = new Socket();
                 ServerThread server = new ServerThread(accept, BASE_DIRECTORY, DEFAULT_FILE);
                 server.start();
             }
