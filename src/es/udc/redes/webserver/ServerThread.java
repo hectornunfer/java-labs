@@ -33,7 +33,7 @@ public class ServerThread extends Thread {
         this.DEFAULT_FILE = basefile;
     }
 
-    
+
     public void run() {
         files = BASE_DIRECTORY;
         BufferedReader in = null;
@@ -51,10 +51,46 @@ public class ServerThread extends Thread {
                 parts = message.split(" ");
                 String order = parts[0];
                 String file = parts[1];
+                if(file.equals("/")){
+                    file = DEFAULT_FILE;
+                    order = "GET";
+                }
                 if(!order.equals("GET") && !order.equals("HEAD")) {
                     CODE = codeBR;
+                    file = BASE_DIRECTORY + "/error/error400.html";
+                    GetandHead(file,order,out,outputStream);
                 }
-                else {
+                else if (order.equals("GET")) {
+                    String ims = null, aux = in.readLine();
+                    if(aux != null) {
+                        while (!aux.equals("")) {
+                            if(aux.contains("If-Modified-Since")) {
+                                ims = aux;
+                                break;
+                            } else {
+                                aux = in.readLine();
+                            }
+                        }
+                    }
+                    if(ims != null && ims.contains("If-Modified-Since")) {
+                        String dateims = ims.substring(19);
+                        File samepath = new File(BASE_DIRECTORY + file);
+                        Date old = dateformat.parse(dateims);
+                        Date last = dateformat.parse(dateformat.format((int)samepath.lastModified()));
+                        if(old.after(last) || old.equals(last)) {
+                            CODE = codeNM;
+                            GetandHead(file,order,out,outputStream);
+                        } else {
+                            CODE = codeOK;
+                            GetandHead(file,order,out,outputStream);
+                        }
+                    }
+                    else {
+                        CODE = codeOK;
+                        GetandHead(file,order,out,outputStream);
+                    }
+                }
+                else if(order.equals("HEAD")) {
                     GetandHead(file,order,out,outputStream);
                 }
             }
@@ -84,16 +120,28 @@ public class ServerThread extends Thread {
     }
     private void GetandHead(String file, String order, PrintWriter writer, OutputStream outputStream) throws IOException{
         File path = new File(BASE_DIRECTORY + file);
-        if(path.exists()) {
-            CODE = codeOK;
-        } else CODE = codeNF;
+        if (CODE.equals(codeOK)){
+            if(path.exists()) {
+                CODE = codeOK;
+            } else{
+                CODE = codeNF;
+                path = new File(BASE_DIRECTORY + "/error/error404.html");
+            }
+        }
         date = new Date();
-        String print = http +" " + CODE + "\n" + "Date: " + dateformat.format(date) + "\n"
-                + "Server: " + machine + "\n" + "Last-Modified: not supported yet" + "\n"
-                + "Content-Length: " + path.length() + "\n" + "Content-type: " + FileType(path.getName()) + "\n\n";
-        writer.println(print);
-        writer.flush();
-        if (CODE.equals(codeOK) && order.equals("GET")) {
+        if(CODE.equals(codeBR)) {
+            String print = http +" " + CODE + "\n" + "Date: " + dateformat.format(date) + "\n"
+            + "Server: " + machine + "\n";
+            writer.println(print);
+            writer.flush();
+        } else {
+             String print = http +" " + CODE + "\n" + "Date: " + dateformat.format(date) + "\n"
+             + "Server: " + machine + "\n" + "Last-Modified: " + dateformat.format(path.lastModified()) + "\n"
+             + "Content-Length: " + path.length() + "\n" + "Content-type: " + FileType(path.getName()) + "\n";
+            writer.println(print);
+            writer.flush();
+        }
+        if(!order.equals("HEAD") ) {
             FileInputStream in = null;
             byte[] content = new byte[(int)path.length()];
             try{
