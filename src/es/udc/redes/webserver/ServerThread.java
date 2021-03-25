@@ -33,6 +33,7 @@ public class ServerThread extends Thread {
         this.DEFAULT_FILE = basefile;
     }
 
+    
     public void run() {
         files = BASE_DIRECTORY;
         BufferedReader in = null;
