@@ -90,7 +90,8 @@ public class ServerThread extends Thread {
                         GetandHead(file,order,out,outputStream);
                     }
                 }
-                else if(order.equals("HEAD")) {
+                else  {
+                    CODE = codeOK;
                     GetandHead(file,order,out,outputStream);
                 }
             }
