@@ -13,7 +13,6 @@ import java.util.Date;
  * @author 102
  */
 public class ServerThread extends Thread {
-
     final Socket socket;
     private String files, CODE;
     private Date date;
