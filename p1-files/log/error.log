@@ -1,0 +1,54 @@
+Access order: TRACEp1-files//error/error400.htmlHTTP/1.1
+Client IP: /127.0.0.1
+Date and hour: Fri Mar 26 16:55:24 CET 2021
+Error code: 400 Bad Request
+
+
+Access order: GET/notFound.htmlHTTP/1.1
+Client IP: /127.0.0.1
+Date and hour: Fri Mar 26 16:55:24 CET 2021
+Error code: 404 Not Found
+
+
+Access order: HEAD/notFound.htmlHTTP/1.1
+Client IP: /127.0.0.1
+Date and hour: Fri Mar 26 16:55:24 CET 2021
+Error code: 404 Not Found
+
+
+Access order: TRACEp1-files//error/error400.htmlHTTP/1.1
+Client IP: /127.0.0.1
+Date and hour: Fri Mar 26 17:05:28 CET 2021
+Error code: 400 Bad Request
+
+
+Access order: GET/notFound.htmlHTTP/1.1
+Client IP: /127.0.0.1
+Date and hour: Fri Mar 26 17:05:28 CET 2021
+Error code: 404 Not Found
+
+
+Access order: HEAD/notFound.htmlHTTP/1.1
+Client IP: /127.0.0.1
+Date and hour: Fri Mar 26 17:05:28 CET 2021
+Error code: 404 Not Found
+
+
+Access order: TRACEp1-files//error/error400.htmlHTTP/1.1
+Client IP: /127.0.0.1
+Date and hour: Fri Mar 26 17:14:33 CET 2021
+Error code: 400 Bad Request
+
+
+Access order: GET/notFound.htmlHTTP/1.1
+Client IP: /127.0.0.1
+Date and hour: Fri Mar 26 17:14:33 CET 2021
+Error code: 404 Not Found
+
+
+Access order: HEAD/notFound.htmlHTTP/1.1
+Client IP: /127.0.0.1
+Date and hour: Fri Mar 26 17:14:33 CET 2021
+Error code: 404 Not Found
+
+
